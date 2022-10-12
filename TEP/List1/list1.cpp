@@ -22,28 +22,28 @@ void allocateTableAndFill(int size) {
     for (int i = 0; i < size; i++)
         cout << table[i] << "\t";
 
-    delete table;
+    delete[] table;
 }
 
-bool allocate2DTable(int **&piTable, int sizeX, int sizeY) {
+bool allocate2DTable(int **&table, int sizeX, int sizeY) {
     if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
         return false;
 
-    piTable = new int *[sizeX];
+    table = new int *[sizeX];
     for (int i = 0; i < sizeX; i++)
-        piTable[i] = new int[sizeY];
+        table[i] = new int[sizeY];
 
     return true;
 
 }
 
-bool deallocate2DTable(int **&piTable, int sizeX, int sizeY) {
+bool deallocate2DTable(int **&table, int sizeX, int sizeY) {
     if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
         return false;
 
     for (int i = 0; i < sizeX; i++)
-        delete piTable[i];
-    delete piTable;
+        delete[] table[i];
+    delete[] table;
 
     return true;
 }
@@ -55,42 +55,43 @@ private:
     int length;
 public:
     Table() {
-        this->name = DEFAULT_NAME;
-        this->length = DEFAULT_TABLE_LENGTH;
-        this->table = new int[length];
+        name = DEFAULT_NAME;
+        length = DEFAULT_TABLE_LENGTH;
+        table = new int[length];
         cout << PARAMETER_LESS << name << endl;
     }
 
-    Table(string name, int tableLength) {
+    Table(string tableName, int tableLength) {
         if (!isSizeCorrect(tableLength))
             return;
 
-        this->name = name;
-        this->length = tableLength;
-        this->table = new int[tableLength];
+        name = tableName;
+        length = tableLength;
+        table = new int[tableLength];
         cout << PARAMETER << name << endl;
     }
 
     Table(Table &other) {
-        this->name = other.name + COPY_SUFFIX;
-        this->length = other.length;
-        this->table = other.table;
+        name = other.name + COPY_SUFFIX;
+        length = other.length;
+        table = other.table;
         cout << COPY << name << endl;
     }
 
     ~Table() {
-        cout << DELETE << this->name << endl;
+        cout << DELETE << name << endl;
     }
 
-    void setName(string name) {
-        this->name = name;
+    void setName(string newName) {
+        name = newName;
     }
 
     bool setNewLength(int tableLength) {
         if (!isSizeCorrect(tableLength))
             return false;
 
-        this->length = tableLength;
+        length = tableLength;
+        table = new int [tableLength];
         return true;
     }
 
@@ -99,8 +100,8 @@ public:
     }
 
     void print() {
-        cout << NAME << this->name << endl;
-        cout << TABLE_LENGTH << this->length << endl;
+        cout << NAME << name << endl;
+        cout << TABLE_LENGTH << length << endl;
         cout << TABLE;
         for (int i = 0; i < length; i++)
             cout << table[i] << "\t";

@@ -18,51 +18,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51dd80a5-aa3a-4046-b37f-754f84e7c41d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Semestr 3 - repo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List1/.idea/List1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List1/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List1/list1.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List1/list1.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/.idea/List2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/cache-v2-d7f7429ddb26ce8bfd4b.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-60c67cc9fbcd26a6d026.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-2b0fde9d32443870d888.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-11T12-06-17-0183.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/target-List2-Debug-1ff61415dc7bda64b5ff.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-2aa95edb22efbe90c0ad.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeRCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/a.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/a.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TEP/List2/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEP/List1/list1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/list1.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,27 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "D:/Studia/Semestr 3 - repo",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Studia/Semestr 3 - repo&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="List1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="List1" TARGET_NAME="List1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="List1" RUN_TARGET_NAME="List1">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -128,7 +81,9 @@
       <updated>1665489239898</updated>
       <workItem from="1665489241060" duration="156000" />
       <workItem from="1665489417762" duration="280000" />
-      <workItem from="1665489708700" duration="300000" />
+      <workItem from="1665489708700" duration="614000" />
+      <workItem from="1665491569441" duration="93000" />
+      <workItem from="1665567587397" duration="1296000" />
     </task>
     <servers />
   </component>
