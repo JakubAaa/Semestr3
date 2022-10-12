@@ -9,7 +9,7 @@ bool isSizeCorrect(int size) {
     return size >= 0;
 }
 
-void allocateTableAndFill(int size) {
+void allocateAndFillTable(int size) {
     if (!isSizeCorrect(size))
         return;
 
@@ -87,7 +87,7 @@ public:
     }
 
     bool setNewLength(int tableLength) {
-        if (!isSizeCorrect(tableLength))
+        if (!isSizeCorrect(tableLength))cwccccc
             return false;
 
         length = tableLength;
@@ -121,9 +121,9 @@ void modifyTable(Table table, int tableLength) {
 int main() {
     //Task1
     cout << "Task1" << endl;
-    allocateTableAndFill(4);
-    allocateTableAndFill(0);
-    allocateTableAndFill(-4);
+    allocateAndFillTable(4);
+    allocateAndFillTable(0);
+    allocateAndFillTable(-4);
     cout << "\n" << endl;
 
     //Task2
