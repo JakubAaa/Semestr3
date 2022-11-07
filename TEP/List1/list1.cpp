@@ -10,40 +10,46 @@ bool isSizeCorrect(int size) {
 }
 
 void allocateAndFillTable(int size) {
-    if (!isSizeCorrect(size))
+    if (!isSizeCorrect(size)) {
+        cout << WRONG_DATA << endl;
         return;
+    }
 
     int *table;
     table = new int[size];
 
     for (int i = 0; i < size; i++)
-        table[i] = DEFAULT_TABLE_FILLER;
+        table[i] = DEFAULT_TABLE_NUMBER;
 
     for (int i = 0; i < size; i++)
         cout << table[i] << "\t";
+    cout << endl;
 
     delete[] table;
 }
 
-bool allocate2DTable(int **&table, int sizeX, int sizeY) {
-    if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
+bool allocate2DTable(int ***table, int sizeX, int sizeY) {
+    if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY)) {
+        cout << WRONG_DATA << endl;
         return false;
+    }
 
-    table = new int *[sizeX];
+    *table = new int *[sizeX];
     for (int i = 0; i < sizeX; i++)
-        table[i] = new int[sizeY];
+        (*table)[i] = new int [sizeY];
 
     return true;
-
 }
 
-bool deallocate2DTable(int **&table, int sizeX, int sizeY) {
-    if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
+bool deallocate2DTable(int ***table, int sizeX, int sizeY) {
+    if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY)) {
+        cout << WRONG_DATA << endl;
         return false;
+    }
 
     for (int i = 0; i < sizeX; i++)
-        delete[] table[i];
-    delete[] table;
+        delete[] (*table)[i];
+    delete[] *table;
 
     return true;
 }
@@ -62,8 +68,10 @@ public:
     }
 
     Table(string tableName, int tableLength) {
-        if (!isSizeCorrect(tableLength))
+        if (!isSizeCorrect(tableLength)) {
+            cout << WRONG_DATA << endl;
             return;
+        }
 
         name = tableName;
         length = tableLength;
@@ -80,6 +88,7 @@ public:
 
     ~Table() {
         cout << DELETE << name << endl;
+        delete table;
     }
 
     void setName(string newName) {
@@ -87,16 +96,18 @@ public:
     }
 
     bool setNewLength(int tableLength) {
-        if (!isSizeCorrect(tableLength))cwccccc
+        if (!isSizeCorrect(tableLength)) {
+            cout << WRONG_DATA << endl;
             return false;
+        }
 
         length = tableLength;
-        table = new int [tableLength];
+        table = new int[tableLength];
         return true;
     }
 
     Table *clone() {
-        return new Table(*this);
+        return new Table(name, length);
     }
 
     void print() {
@@ -113,7 +124,7 @@ void modifyTable(Table *table, int tableLength) {
     table->setNewLength(tableLength);
 }
 
-void modifyTable(Table table, int tableLength) {
+void modifyTable(Table table, int tableLength) { //works
     table.setNewLength(tableLength);
 }
 
@@ -129,18 +140,18 @@ int main() {
     //Task2
     cout << "Task2" << endl;
     int **table;
-    cout << allocate2DTable(table, 2, 2) << endl;
-    cout << allocate2DTable(table, -1, 2) << endl;
-    cout << allocate2DTable(table, 1, -2) << endl;
-    cout << allocate2DTable(table, -1, -2) << endl;
+    cout << allocate2DTable(&table, -2, -2) << endl;
+    cout << allocate2DTable(&table, -1, 2) << endl;
+    cout << allocate2DTable(&table, 1, -2) << endl;
+    cout << allocate2DTable(&table, 1, 2) << endl;
     cout << "\n";
 
     //Task3
     cout << "Task3" << endl;
-    cout << deallocate2DTable(table, 2, 4) << endl;
-    cout << deallocate2DTable(table, -2, 4) << endl;
-    cout << deallocate2DTable(table, 2, -4) << endl;
-    cout << deallocate2DTable(table, -2, -4) << endl;
+    cout << deallocate2DTable(&table, 1, 2) << endl;
+    cout << deallocate2DTable(&table, -2, 4) << endl;
+    cout << deallocate2DTable(&table, 2, -4) << endl;
+    cout << deallocate2DTable(&table, -2, -4) << endl;
     cout << "\n";
 
     //Task4
