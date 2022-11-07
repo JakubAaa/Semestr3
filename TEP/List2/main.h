@@ -12,9 +12,9 @@ const string PARAMETER = "Parameter: ";
 const string COPY_SUFFIX = "_copy";
 const string COPY = "Copy: ";
 const string DELETE = "Delete: ";
-const string NAME = "Name: ";
-const string TABLE_LENGTH = "Table length: ";
-const string TABLE = "Table: ";
+const string NAME = "CTable name: ";
+const string TABLE_LENGTH = "CTable length: ";
+const string TABLE = "CTable: ";
 
 
 
