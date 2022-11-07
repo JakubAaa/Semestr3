@@ -1,3 +1,0 @@
-D:/Studia/Semestr3-repo/TEP/List2-modyfication/cmake-build-debug/CMakeFiles/List2_modyfication.dir
-D:/Studia/Semestr3-repo/TEP/List2-modyfication/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Studia/Semestr3-repo/TEP/List2-modyfication/cmake-build-debug/CMakeFiles/rebuild_cache.dir
