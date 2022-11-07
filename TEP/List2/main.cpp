@@ -9,20 +9,20 @@ bool isSizeCorrect(int size) {
     return size >= 0;
 }
 
-class Table {
+class CTable {
 private:
     string name;
     int *table;
     int length;
 public:
-    Table() {
+    CTable() {
         name = DEFAULT_NAME;
         length = DEFAULT_TABLE_LENGTH;
         table = new int[length];
         cout << PARAMETER_LESS << name << endl;
     }
 
-    Table(string tableName, int tableLength) {
+    CTable(string tableName, int tableLength) {
         if (!isSizeCorrect(tableLength)) {
             cout << WRONG_DATA << endl;
             return;
@@ -34,17 +34,17 @@ public:
         cout << PARAMETER << name << endl;
     }
 
-    Table(Table &other) {
+    CTable(CTable &other) {
         name = other.name + COPY_SUFFIX;
         length = other.length;
         table = other.table;
         cout << COPY << name << endl;
     }
 
-    ~Table() {
-        cout << DELETE << name << endl;
-        delete table;
-    }
+//    ~CTable() {
+//        cout << DELETE << name << endl;
+//        delete table;
+//    }
 
     void setName(string newName) {
         name = newName;
@@ -61,20 +61,15 @@ public:
         return true;
     }
 
-    Table *clone() {
-        return new Table(name, length);
+    CTable *clone() {
+        return new CTable(name, length);
     }
 
-    void operator=(const Table &other){
-        table = other.table;
-        length = other.length;
-    }
-
-    void setValueAt(int index, int value){
+    void setValueAt(int index, int value) {
         table[index] = value;
     }
 
-    void print() {
+    void printTable() {
         cout << NAME << name << endl;
         cout << TABLE_LENGTH << length << endl;
         cout << TABLE;
@@ -83,53 +78,123 @@ public:
         cout << endl;
     }
 
-    Table* operator+(Table &other) {
-        Table *newTable;
-        newTable = new Table(name + " + " + other.name, length + other.length);
-        for(int i = 0; i < length; i++)
+    void operator=(const CTable &other) {
+        table = other.table;
+        length = other.length;
+    }
+
+    CTable operator+(const CTable &other) {
+        CTable *newTable;
+        newTable = new CTable(name, length + other.length);
+        for (int i = 0; i < length; i++)
             newTable->table[i] = table[i];
 
         for (int i = 0; i < other.length; i++)
             newTable->table[length + i] = other.table[i];
-        return newTable;
+        return *newTable;
     }
 };
 
-int main() {
-    //Task1
-    cout << "TASK1" << endl;
-    Table table1, table2;
-    table1.setNewLength(6);
-    table2.setNewLength(4);
-    table1 = table2;
-    table1.print();
-    table2.print();
-    cout << endl;
+class Table {
+private:
+    int **table;
+    int sizeX;
+    int sizeY;
+public:
+    Table(int xSize, int ySize) {
+        sizeX = xSize;
+        sizeY = ySize;
+        table = new int *[sizeX];
+        for (int i = 0; i < sizeX; i++)
+            table[i] = new int[sizeY];
+    }
 
-    //Task3
-    cout << "TASK3" << endl;
-    Table table3, table4;
-    table3.setNewLength(6);
-    table4.setNewLength(4);
+    Table operator+(const Table &other) {
+        if (sizeX != other.sizeX || sizeY != other.sizeY) {
+            cout << "Table have different sizes!" << endl;
+        }
+        Table newTable= Table(sizeX, sizeY);
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++)
+                newTable.table[i][j] = table[i][j] + other.table[i][j];
+        }
+        return newTable;
+    }
 
-    for(int i = 0; i < 6; i++)
-        table3.setValueAt(i, i + 1);
+    void fillTable1() {
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                table[i][j] = 1;
+            }
+        }
+    };
 
-    for(int i = 0; i < 4; i++)
-        table4.setValueAt(i, i + 50);
+    void fillTable2() {
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                table[i][j] = 2;
+            }
+        }
+    };
 
-    table3 = table4;
-    table4.setValueAt(2, 123);
-    table3.print();
-    table4.print();
-    cout << endl;
+    void printTable() {
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++)
+                cout << *&table[i][j] << "    ";
+            cout << endl;
+        }
+    };
+};
 
-    //TASK4
-    cout << "TASK4" << endl;
-    Table *table5;
-    table5 = table3 + table4;
-    table5->print();
-    cout << endl;
+    int main() {
+        Table table1 = Table(4, 5);
+        table1.fillTable1();
+        Table table2 = Table(4, 5);
+        table2.fillTable2();
+        Table table3 = Table(4,5);
+        table3 = table2 + table1;
+        table1.printTable();
+        cout << endl;;
+        table2.printTable();
+        cout << endl;;
+        table3.printTable();
+        return 0;
+    };
 
-    return 0;
-}
+//    //Task1
+//    cout << "TASK1" << endl;
+//    CTable table1, table2;
+//    table1.setNewLength(6);
+//    table2.setNewLength(4);
+//    table1 = table2;
+//    table1.printTable();
+//    table2.printTable();
+//    cout << endl;
+//
+//    //Task3
+//    cout << "TASK3" << endl;
+//    CTable table3, table4;
+//    table3.setNewLength(6);
+//    table4.setNewLength(4);
+//
+//    for (int i = 0; i < 6; i++)
+//        table3.setValueAt(i, i + 1);
+//
+//    for (int i = 0; i < 4; i++)
+//        table4.setValueAt(i, i + 50);
+//
+//    table3 = table4;
+//    table4.setValueAt(2, 123);
+//    table3.printTable();
+//    table4.printTable();
+//    cout << endl;
+//
+//    //TASK4
+//    cout << "TASK4" << endl;
+//    CTable table5;
+//    table5 = table3 + table4;
+//    table5.printTable();
+//    cout << endl;
+//
+//    return 0;
+//}
