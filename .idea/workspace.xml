@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -15,14 +18,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51dd80a5-aa3a-4046-b37f-754f84e7c41d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/CMakeFiles/List1.dir/list1.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/CMakeFiles/List1.dir/list1.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/List1.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/List1.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEP/List1/list1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TEP/List1/list1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEP/List3/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEP/List3/Zad1.cpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +34,7 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -57,13 +57,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "D:/Studia/Semestr3-repo"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="List1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="List1" TARGET_NAME="List1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="List1" RUN_TARGET_NAME="List1">
       <method v="2">
@@ -87,6 +89,18 @@
       <workItem from="1665573951264" duration="428000" />
       <workItem from="1665574458538" duration="132000" />
       <workItem from="1665574679145" duration="715000" />
+      <workItem from="1665599612329" duration="133000" />
+      <workItem from="1665659913310" duration="1119000" />
+      <workItem from="1665667207496" duration="627000" />
+      <workItem from="1665731693031" duration="264000" />
+      <workItem from="1665738435896" duration="5950000" />
+      <workItem from="1665843819814" duration="50000" />
+      <workItem from="1665848026265" duration="8000" />
+      <workItem from="1666260629066" duration="379000" />
+      <workItem from="1666334108608" duration="566000" />
+      <workItem from="1666343912865" duration="853000" />
+      <workItem from="1666544273770" duration="460000" />
+      <workItem from="1666780239321" duration="2207000" />
     </task>
     <servers />
   </component>
