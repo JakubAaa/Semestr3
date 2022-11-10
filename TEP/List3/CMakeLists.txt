@@ -3,4 +3,5 @@ project(List3)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(List3 main.cpp)
+add_compile_options(-O0)
+add_executable(List3 List3.cpp)
