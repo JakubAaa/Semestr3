@@ -1,5 +1,3 @@
-import sun.invoke.empty.Empty
-
 import scala.annotation.tailrec
 
 type Change = (Int, Char)
@@ -32,6 +30,7 @@ def getChangeByIndex(index: Int, changes: Snapshot): Change =
     case _ :: t => getChangeByIndex(index, t)
     case _ => null
 
+@tailrec
 def getBiggestIndex(changes: Snapshot): Int =
   if(changes == null || changes.isEmpty)
     0
@@ -39,8 +38,6 @@ def getBiggestIndex(changes: Snapshot): Int =
     val sortedList = changes sortBy (_._1)
     val reversedSortedList = sortedList.reverse
     if reversedSortedList.head._2 == 0 then getBiggestIndex(reversedSortedList.tail) else reversedSortedList.head._1
-
-
 
 def applySnapshot(old: Snapshot, changes: Snapshot): Snapshot =
   val theBiggestIndex = getBiggestIndex(changes)
@@ -56,8 +53,6 @@ def applySnapshot(old: Snapshot, changes: Snapshot): Snapshot =
       else
         old(x)
 
-
-
 @tailrec
 def applySnapshotsInTree[A](tree: snapshotsTree[A], snapshot: Snapshot): Snapshot =
   tree match
@@ -68,14 +63,13 @@ def applySnapshotsInTree[A](tree: snapshotsTree[A], snapshot: Snapshot): Snapsho
 def review[A](tree: snapshotsTree[A], snapshot: Snapshot): String =
   val finalSnapShot = applySnapshotsInTree(tree, snapshot)
   val finalList = finalSnapShot.map(e => if e == null then "" else e._2)
-    finalList.mkString
+  finalList.mkString
 
-val snapshotTree: snapshotsTree[Node[Change]] = Node(createSnapshot("Ala ma kota", 0),
-                      Node(insertSubstring(createSnapshot("Ala ma kota", 0), "i psa", 12),
-                        Node(List(new Change(113, 0), new Change(2, 'A'), new Change(22, 'X')), Empty
+val exampleTree = Node(createSnapshot("Ala ma kota", 0),
+                      Node(insertSubstring(createSnapshot("Ala ma kota", 0), "i psa tezz", 12),
+                        Node(List(new Change(21, 0), new Change(7, 'K'), new Change(23, ';'), new Change(24, ')')), Empty
                             )
                           )
                         )
 
-review(snapshotTree, List((9, 'T')))
-
+review(exampleTree, List((14, 'P')))
