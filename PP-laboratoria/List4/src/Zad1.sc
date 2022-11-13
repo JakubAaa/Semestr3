@@ -1,18 +1,19 @@
 import scala.annotation.tailrec
+import scala.Array
 
 type Change = (Int, Char)
 type Snapshot = List[Change]
 
 sealed trait snapshotsTree[+A]
 case object Empty extends snapshotsTree[Nothing]
-case class Node[+A](snapshot: Snapshot, bt: snapshotsTree[A]) extends snapshotsTree[A]
+case class Node[+A](snapshot: Snapshot, tree: snapshotsTree[A]) extends snapshotsTree[A]
 
 def createSnapshot(newString: String, startIndex: Int): Snapshot =
   val charList: List[Char] = newString.toList
   for (x <- List.range(0, charList.length)) yield new Change(startIndex + x, charList(x))
 
-def insertSubstring(oldSnapShop: Snapshot, substring: String, index: Int): Snapshot =
-  if(index >= oldSnapShop.length)
+def insertSubstring(oldSnapshot: Snapshot, substring: String, index: Int): Snapshot =
+  if(index >= oldSnapshot.length)
     createSnapshot(substring, index)
   else
     def insert(currentIndex: Int, list: Snapshot): Snapshot =
@@ -21,8 +22,11 @@ def insertSubstring(oldSnapShop: Snapshot, substring: String, index: Int): Snaps
         case _ :: t if currentIndex < index => insert(currentIndex + 1, t)
         case h :: t if currentIndex > index => List(new Change(h._1 + index - 1, h._2)) ::: insert(currentIndex + index + 1, t)
         case _ => Nil
-    insert(0, oldSnapShop)
+    insert(0, oldSnapshot)
 
+def deleteSubstringByIndex(indexFrom: Int, indexTo: Int): Snapshot =
+  for (x <- List.range(indexFrom, indexTo + 1)) yield
+    new Change(x, 0)
 @tailrec
 def getChangeByIndex(index: Int, changes: Snapshot): Change =
   changes match
@@ -60,16 +64,18 @@ def applySnapshotsInTree[A](tree: snapshotsTree[A], snapshot: Snapshot): Snapsho
     case Node(oldSnapshot, Node(newSnapshot, bt)) => applySnapshotsInTree(Node(applySnapshot(oldSnapshot, newSnapshot), bt), snapshot)
     case _ => null
 
-def review[A](tree: snapshotsTree[A], snapshot: Snapshot): String =
+def review[A](tree: snapshotsTree[A], snapshot: Snapshot) =
   val finalSnapShot = applySnapshotsInTree(tree, snapshot)
   val finalList = finalSnapShot.map(e => if e == null then "" else e._2)
   finalList.mkString
 
 val exampleTree = Node(createSnapshot("Ala ma kota", 0),
-                      Node(insertSubstring(createSnapshot("Ala ma kota", 0), "i psa tezz", 12),
-                        Node(List(new Change(21, 0), new Change(7, 'K'), new Change(23, ';'), new Change(24, ')')), Empty
-                            )
+                      Node(insertSubstring(createSnapshot("Ala ma kota", 0), "i psa tezzzzzzz", 12),
+                          Node(deleteSubstringByIndex(21, 27),
+                              Node(List(new Change(7, 'K'), new Change(25, ';'), new Change(26, ')'), new Change(24, ' ')), Empty
+                                  )
+                              )
                           )
-                        )
+                      )
 
 review(exampleTree, List((14, 'P')))
