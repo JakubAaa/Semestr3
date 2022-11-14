@@ -10,23 +10,44 @@ case class Node[+A](snapshot: Snapshot, tree: snapshotsTree[A]) extends snapshot
 
 def createSnapshot(newString: String, startIndex: Int): Snapshot =
   val charList: List[Char] = newString.toList
-  for (x <- List.range(0, charList.length)) yield new Change(startIndex + x, charList(x))
+  for (x <- List.range(0, charList.length)) yield (startIndex + x, charList(x))
 
-def insertSubstring(oldSnapshot: Snapshot, substring: String, index: Int): Snapshot =
-  if(index >= oldSnapshot.length)
-    createSnapshot(substring, index)
+def insertSubstring(previousString: String, substring: String, index: Int): Snapshot =
+  val oldSnapshot = createSnapshot(previousString, 0)
+  val oldSnapshotLength = oldSnapshot.length
+  if(index >= oldSnapshotLength)
+    createSnapshot(substring, oldSnapshotLength)
   else
-    def insert(currentIndex: Int, list: Snapshot): Snapshot =
-      list match
+    def insert(currentIndex: Int, snapshot: Snapshot): Snapshot =
+      snapshot match
         case h :: t if currentIndex == index => createSnapshot(substring, index) ::: insert(currentIndex + index + 1, h :: t)
         case _ :: t if currentIndex < index => insert(currentIndex + 1, t)
-        case h :: t if currentIndex > index => List(new Change(h._1 + index - 1, h._2)) ::: insert(currentIndex + index + 1, t)
+        case h :: t if currentIndex > index => (h._1 + index - 1, h._2) :: insert(currentIndex + index + 1, t)
         case _ => Nil
     insert(0, oldSnapshot)
 
 def deleteSubstringByIndex(indexFrom: Int, indexTo: Int): Snapshot =
   for (x <- List.range(indexFrom, indexTo + 1)) yield
-    new Change(x, 0)
+    (x, 0)
+
+def moveSubstring(previousString: String, sourceIndex: Int, destinationIndex: Int, length: Int): Snapshot =
+  val oldSnapshot = createSnapshot(previousString, 0)
+  val oldSnapshotLength = oldSnapshot.length
+  if(sourceIndex >= oldSnapshotLength || destinationIndex >= oldSnapshotLength)
+    null
+  else if(sourceIndex == destinationIndex)
+    List()
+  else if(sourceIndex > destinationIndex)
+    for
+  else
+    List()
+@tailrec
+def checkSnapshot(oldSnapshotLength: Int, snapshot: Snapshot): Boolean =
+  snapshot match
+    case h :: _ if h._1 < 0 => false
+    case h :: _ if h._2 == 0 && h._1 >= oldSnapshotLength => false
+    case _ :: t => checkSnapshot(oldSnapshotLength, t)
+    case _ => true
 @tailrec
 def getChangeByIndex(index: Int, changes: Snapshot): Change =
   changes match
@@ -44,38 +65,47 @@ def getBiggestIndex(changes: Snapshot): Int =
     if reversedSortedList.head._2 == 0 then getBiggestIndex(reversedSortedList.tail) else reversedSortedList.head._1
 
 def applySnapshot(old: Snapshot, changes: Snapshot): Snapshot =
-  val theBiggestIndex = getBiggestIndex(changes)
-  val range = if theBiggestIndex > old.length then theBiggestIndex + 1 else old.length
-  for (x <- List.range(0, range)) yield
-    val elem = getChangeByIndex(x, changes)
-      if (elem != null && elem._2 == 0)
-        null
-      else if (elem != null)
-        elem
-      else if (x >= old.length)
-        new Change(x, ' ')
-      else
-        old(x)
+  val oldLength = old.length
+  if(!checkSnapshot(oldLength, changes))
+    null
+  else
+    val theBiggestIndex = getBiggestIndex(changes)
+    val range = if theBiggestIndex > oldLength then theBiggestIndex + 1 else oldLength
+    for (x <- List.range(0, range)) yield
+      val elem = getChangeByIndex(x, changes)
+        if (elem != null && elem._2 == 0)
+          null
+        else if (elem != null)
+          elem
+        else if (x >= oldLength)
+          null
+        else
+          old(x)
 
 @tailrec
 def applySnapshotsInTree[A](tree: snapshotsTree[A], snapshot: Snapshot): Snapshot =
   tree match
+    case Node(_, Node(null, _)) => null
+    case Node(null, _) => null
     case Node(oldSnapshot, Empty) => applySnapshot(oldSnapshot, snapshot)
-    case Node(oldSnapshot, Node(newSnapshot, bt)) => applySnapshotsInTree(Node(applySnapshot(oldSnapshot, newSnapshot), bt), snapshot)
+    case Node(oldSnapshot, Node(newSnapshot, tree)) => applySnapshotsInTree(Node(applySnapshot(oldSnapshot, newSnapshot), tree), snapshot)
     case _ => null
 
 def review[A](tree: snapshotsTree[A], snapshot: Snapshot) =
   val finalSnapShot = applySnapshotsInTree(tree, snapshot)
-  val finalList = finalSnapShot.map(e => if e == null then "" else e._2)
-  finalList.mkString
+  if(finalSnapShot == null)
+    Empty
+  else
+    val finalList = finalSnapShot.map(e => if e == null then "" else e._2)
+    finalList.mkString
 
-val exampleTree = Node(createSnapshot("Ala ma kota", 0),
-                      Node(insertSubstring(createSnapshot("Ala ma kota", 0), "i psa tezzzzzzz", 12),
-                          Node(deleteSubstringByIndex(21, 27),
-                              Node(List(new Change(7, 'K'), new Change(25, ';'), new Change(26, ')'), new Change(24, ' ')), Empty
+val exampleTree = Node(createSnapshot("Ala ma kota ", 0),
+                      Node(insertSubstring("Ala ma kota " , "i psa tezzzzzzz", 12),
+                          Node(deleteSubstringByIndex(21, 26),
+                              Node(moveSubstring("Ala ma kota i psa tez", 12, 12, 2), Empty
                                   )
                               )
                           )
                       )
 
-review(exampleTree, List((14, 'P')))
+review(exampleTree, List((14, 'P'), (7, 'K'), (25, ';'), (26, ')'), (24, ' ')))
