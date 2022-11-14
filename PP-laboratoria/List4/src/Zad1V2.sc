@@ -1,14 +1,14 @@
 import scala.annotation.tailrec
 
-sealed trait Operation[+A]
-case class CreateString[+A](value: String) extends Operation[A]
-case class InsertSubstring[+A](index: Int, value: String) extends Operation[A]
-case class DeleteSubstring[+A](index: Int) extends Operation[A]
-case class MoveSubstring[+A](sourceIndex: Int, destinationIndex: Int) extends Operation[A]
+sealed trait operation[+A]
+case class CreateString[+A](value: String) extends operation[A]
+case class InsertSubstring[+A](index: Int, value: String) extends operation[A]
+case class DeleteSubstring[+A](index: Int) extends operation[A]
+case class MoveSubstring[+A](sourceIndex: Int, destinationIndex: Int) extends operation[A]
 
-sealed trait SnapshotsTree[+A]
-case object Empty extends SnapshotsTree[Nothing]
-case class Node[+A](operation: Operation[A], tree: SnapshotsTree[A]) extends SnapshotsTree[A]
+sealed trait snapshotsTree[+A]
+case object Empty extends snapshotsTree[Nothing]
+case class Node[+A](operation: operation[A], tree: snapshotsTree[A]) extends snapshotsTree[A]
 
 def createNewString(value: String): List[String] =
   value.split(" ").toList
@@ -59,22 +59,22 @@ def moveSubstring(list: List[String], sourceIndex: Int, destinationIndex: Int): 
         list(sourceIndex) :: getPartOfList(list, destinationIndex, sourceIndex, 0)  :::
           getPartOfList(list, sourceIndex + 1, list.length, 0)
 
-def applySnapshot[A](operation: Operation[A], oldVersion: List[String]): List[String]=
+def applyOperation[A](operation: operation[A], oldVersion: List[String]): List[String]=
   operation match
     case CreateString(value) => createNewString(value)
     case InsertSubstring(index, value) => insertSubstring(oldVersion, index, value)
     case DeleteSubstring(index) => deleteSubstring(oldVersion, index)
     case MoveSubstring(sIndex, dIndex) => moveSubstring(oldVersion, sIndex, dIndex)
 
-def review[A](root: SnapshotsTree[A], newOperation: Operation[A]) =
+def review[A](root: snapshotsTree[A], newOperation: operation[A]) =
   @tailrec
-  def reviewRec(tree: SnapshotsTree[A], newString: List[String]): List[String]=
+  def reviewRec(tree: snapshotsTree[A], newString: List[String]): List[String]=
     tree match
       case Empty => newString
       case null => null
-      case Node(op, tr) => reviewRec(tr, applySnapshot(op, newString))
+      case Node(op, tr) => reviewRec(tr, applyOperation(op, newString))
 
-  val finalList = applySnapshot(newOperation, reviewRec(root, List()))
+  val finalList = applyOperation(newOperation, reviewRec(root, List()))
   if(finalList == null)
     Empty
   else
