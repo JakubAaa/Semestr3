@@ -30,17 +30,17 @@ def deleteSubstringByIndex(indexFrom: Int, indexTo: Int): Snapshot =
   for (x <- List.range(indexFrom, indexTo + 1)) yield
     (x, 0)
 
-def moveSubstring(previousString: String, sourceIndex: Int, destinationIndex: Int, length: Int): Snapshot =
-  val oldSnapshot = createSnapshot(previousString, 0)
-  val oldSnapshotLength = oldSnapshot.length
-  if(sourceIndex >= oldSnapshotLength || destinationIndex >= oldSnapshotLength)
-    null
-  else if(sourceIndex == destinationIndex)
-    List()
-  else if(sourceIndex > destinationIndex)
-    for
-  else
-    List()
+//def moveSubstring(previousString: String, sourceIndex: Int, destinationIndex: Int, length: Int): Snapshot =
+//  val oldSnapshot = createSnapshot(previousString, 0)
+//  val oldSnapshotLength = oldSnapshot.length
+//  if(sourceIndex >= oldSnapshotLength || destinationIndex >= oldSnapshotLength)
+//    null
+//  else if(sourceIndex == destinationIndex)
+//    List()
+//  else if(sourceIndex > destinationIndex)
+//    for
+//  else
+//    List()
 @tailrec
 def checkSnapshot(oldSnapshotLength: Int, snapshot: Snapshot): Boolean =
   snapshot match
@@ -101,9 +101,7 @@ def review[A](tree: snapshotsTree[A], snapshot: Snapshot) =
 
 val exampleTree = Node(createSnapshot("Ala ma kota ", 0),
                       Node(insertSubstring("Ala ma kota " , "i psa tezzzzzzz", 12),
-                          Node(deleteSubstringByIndex(21, 26),
-                              Node(moveSubstring("Ala ma kota i psa tez", 12, 12, 2), Empty
-                                  )
+                          Node(deleteSubstringByIndex(21, 26), Empty
                               )
                           )
                       )

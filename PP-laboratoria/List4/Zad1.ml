@@ -9,9 +9,7 @@ type snapshotsTree =
   Node of operation * snapshotsTree;;
 
 let createNewString = fun value ->
-  value
-  |> String.split_on_char ' '
-  |> List.filter (fun s -> s <> "");;
+   String.split_on_char ' ' value;;
 
 let insertSubstring = fun (list, index, value) ->
   if index < 0 
@@ -74,11 +72,10 @@ let review = fun(root, newOperation) ->
   in
   let finalList = applyOperation(newOperation, reviewRec(root, []))
   in
-  if(finalList = [])
-    then ""
+  if finalList = []
+    then "ERROR!"
   else
-    List.filter (fun s -> s <> "") finalList
-  |> String.concat " ";;
+  String.concat " " finalList;;
 
 (* TESTS - createNewString  *)
 print_string "TESTS - createNewString";;
