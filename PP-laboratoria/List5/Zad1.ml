@@ -12,16 +12,10 @@ let rec buyTicket list index =
   | HiddenTicket(f) :: t when index = 1 -> checkAwardType (f()) :: t
   | h :: t -> h :: buyTicket t (index - 1);;
 
-
-let itemAward = Item("Bike");;
-let moneyAward = Money(1000);;
-let ticketAward = Ticket(fun() -> Ticket(fun() -> Item("Car")));;
-let unluckyAward = Nothing;;
-
-let ticket1 = HiddenTicket(fun() -> itemAward);;
-let ticket2 = HiddenTicket(fun() -> moneyAward);;
-let ticket3 = HiddenTicket(fun() -> ticketAward);;
-let ticket4 = HiddenTicket(fun() -> unluckyAward);;
+let ticket1 = HiddenTicket(fun() -> Item("Bike"));;
+let ticket2 = HiddenTicket(fun() -> Money(1000));;
+let ticket3 = HiddenTicket(fun() -> Ticket(fun() -> Ticket(fun() -> Item("Car"))));;
+let ticket4 = HiddenTicket(fun() -> Nothing);;
 
 let exampleList1 = [ticket1; ticket2; ticket3; ticket4];;
 
