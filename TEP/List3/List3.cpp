@@ -5,6 +5,7 @@ using std::cout;
 using std::vector;
 using std::endl;
 
+//zad1
 class CNodeStatic {
 private:
     vector<CNodeStatic> v_children;
@@ -58,6 +59,7 @@ public:
             pcGetChild(i)->vPrintAllBelow();
     };
 
+    //zad3
     void vPrintUp() {
         vPrint();
         if (pc_parent_node == NULL)
@@ -66,6 +68,7 @@ public:
     }
 };
 
+//zad4
 class CTreeStatic {
 private:
     CNodeStatic c_root;
@@ -74,7 +77,9 @@ public:
         c_root = CNodeStatic();
     };
 
-    ~CTreeStatic();
+    ~CTreeStatic(){
+        delete &c_root;
+    };
 
     CNodeStatic *pcGetRoot() {
         return &c_root;
@@ -83,8 +88,13 @@ public:
     void vPrintTree() {
         c_root.vPrintAllBelow();
     };
+
+    void printFromNodeUp (CNodeStatic *node){
+        node->vPrintUp();
+    }
 };
 
+//zad5
 class CNodeDynamic {
 private:
     vector<CNodeDynamic *> v_children;
@@ -97,10 +107,8 @@ public:
     };
 
     ~CNodeDynamic() {
-        if (pc_parent_node != NULL)
-            delete pc_parent_node;
-        while (!v_children.empty()) {
-            v_children.pop_back();
+        for (int i = 0; i < iGetChildrenNumber(); i++) {
+            delete v_children[i];
         }
     };
 
@@ -179,11 +187,17 @@ public:
         pc_root->vPrintAllBelow();
     };
 
+    //zad6
     bool bMoveSubtree(CNodeDynamic *pcParentNode, CNodeDynamic *pcNewChildNode){
-        pcParentNode->vAddNewChild();
-        pcParentNode->setChild(pcParentNode->iGetChildrenNumber() - 1, pcNewChildNode);
-        pcNewChildNode->deleteChild(pcNewChildNode);
-        pcNewChildNode->setParent(pcParentNode);
+        if (pcParentNode != NULL && pcNewChildNode != NULL) {
+            pcParentNode->vAddNewChild();
+            pcParentNode->setChild(pcParentNode->iGetChildrenNumber() - 1, pcNewChildNode);
+            pcNewChildNode->deleteChild(pcNewChildNode);
+            pcNewChildNode->setParent(pcParentNode);
+            return true;
+        }
+        else
+            return false;
     };
 };
 
@@ -258,6 +272,7 @@ int main() {
     dynamicTree2->pcGetRoot()->pcGetChild(0)->pcGetChild(0)->vAddNewChild();
     dynamicTree2->pcGetRoot()->pcGetChild(0)->pcGetChild(0)->pcGetChild(0)->vSetValue(33333);
 
+    cout << "Before:" << endl;
     dynamicTree1->vPrintTree();
     cout << endl;
     dynamicTree2->vPrintTree();
@@ -265,6 +280,7 @@ int main() {
 
     dynamicTree1->bMoveSubtree(dynamicTree1->pcGetRoot()->pcGetChild(2), dynamicTree2->pcGetRoot()->pcGetChild(0));
 
+    cout << "After:" << endl;
     dynamicTree1->vPrintTree();
     cout << endl;
     dynamicTree2->vPrintTree();

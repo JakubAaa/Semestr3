@@ -66,7 +66,7 @@ def applyOperation[A] (operation: operation[A], oldVersion: List[String]): List[
     case DeleteSubstring(index) => deleteSubstring(oldVersion, index)
     case MoveSubstring(sIndex, dIndex) => moveSubstring(oldVersion, sIndex, dIndex)
 
-def review[A] (root: snapshotsTree[A], newOperation: operation[A]): String =
+def review[A] (root: snapshotsTree[A], newOperation: operation[A]): Option[String] =
   @tailrec
   def reviewRec (tree: snapshotsTree[A], currentListOfStrings: List[String]): List[String] =
     tree match
@@ -76,9 +76,9 @@ def review[A] (root: snapshotsTree[A], newOperation: operation[A]): String =
 
   val finalList = applyOperation(newOperation, reviewRec(root, List()))
   if (finalList == null)
-    null
+    None
   else
-    finalList.mkString(" ")
+    Some(finalList.mkString(" "))
 
 //TESTS - createNewString
 createNewString("Ala")
@@ -121,9 +121,9 @@ moveSubstring(manyElementsList, 2, 1)
 
 //TESTS - SnapshotTree
 val exampleTree1 = Node(CreateString("Ala Ala kota ma"),              //Ala Ala kota ma
-  Node(InsertSubstring(3, "psa"),                 //Ala Ala kota psa ma
-    Node(InsertSubstring(3, "i"),               //Ala Ala kota i psa ma
-      Node(MoveSubstring(5, 2), Empty         //Ala Ala ma kota i psa
+  Node(InsertSubstring(3, "psa"),                                     //Ala Ala kota psa ma
+    Node(InsertSubstring(3, "i"),                                     //Ala Ala kota i psa ma
+      Node(MoveSubstring(5, 2), Empty                                 //Ala Ala ma kota i psa
       )
     )
   )

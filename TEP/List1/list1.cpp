@@ -25,19 +25,19 @@ void allocateAndFillTable(int size) {
     delete[] table;
 }
 
-bool allocate2DTable(int **&table, int sizeX, int sizeY) {
+bool allocate2DTable(int ***table, int sizeX, int sizeY) {
     if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
         return false;
 
-    table = new int *[sizeX];
+    *table = new int *[sizeX];
     for (int i = 0; i < sizeX; i++)
-        table[i] = new int[sizeY];
+        (*table)[i] = new int[sizeY];
 
     return true;
 
 }
 
-bool deallocate2DTable(int **&table, int sizeX, int sizeY) {
+bool deallocate2DTable(int ***table, int sizeX, int sizeY) {
     if (!isSizeCorrect(sizeX) || !isSizeCorrect(sizeY))
         return false;
 
@@ -87,7 +87,7 @@ public:
     }
 
     bool setNewLength(int tableLength) {
-        if (!isSizeCorrect(tableLength))cwccccc
+        if (!isSizeCorrect(tableLength))
             return false;
 
         length = tableLength;
@@ -128,7 +128,7 @@ int main() {
 
     //Task2
     cout << "Task2" << endl;
-    int **table;
+    int ***table;
     cout << allocate2DTable(table, 2, 2) << endl;
     cout << allocate2DTable(table, -1, 2) << endl;
     cout << allocate2DTable(table, 1, -2) << endl;

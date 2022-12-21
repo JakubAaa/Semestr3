@@ -86,17 +86,11 @@ int main() {
     CMySmartPointer<int> pointer2(pointer1);
     CMySmartPointer<int> pointer3(new int[7]);
     pointer3 = pointer2;
-    std::cout << pointer2.operator->()[0] << std::endl;
-    std::cout << pointer2.operator->()[1] << std::endl;
-    std::cout << pointer2.operator->()[2] << std::endl;
-    std::cout << pointer2.operator->()[3] << std::endl;
-    std::cout << std::endl;
     std::cout << pointer3.operator->()[0] << std::endl;
     std::cout << pointer3.operator->()[1] << std::endl;
     std::cout << pointer3.operator->()[2] << std::endl;
     std::cout << pointer3.operator->()[3] << std::endl;
     std::cout << std::endl;
-
     //TASK 4
     std::cout << "TESTS 4" << std::endl;
     CTab ctab1, ctab2;
